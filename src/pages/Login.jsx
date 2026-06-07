@@ -1,0 +1,127 @@
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { loginUser } from '../firebase/auth';
+import { Mail, Lock, AlertCircle } from 'lucide-react';
+
+const inputCls = 'w-full bg-[#1c1c1c] border border-white/[0.06] rounded-[4px] px-4 py-3 text-[#F5F5F5] placeholder-[#555555] focus:outline-none focus:border-[#FF6B00] transition-colors text-sm';
+
+export default function Login() {
+  const [email, setEmail]       = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError]       = useState('');
+  const [loading, setLoading]   = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    try {
+      await loginUser(email, password);
+      navigate('/dashboard');
+    } catch {
+      setError('Invalid email or password. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex">
+      {/* ── Left panel – hero image ── */}
+      <div className="hidden md:flex md:w-[55%] relative overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/75" />
+        <div className="relative z-10 flex flex-col justify-end p-12 pb-16">
+          <h1 className="font-bebas text-[7.5rem] leading-[0.9] text-white tracking-wide">
+            RIDE<br />LANKA
+          </h1>
+          <p className="text-white/40 text-base mt-4 font-light tracking-wide">
+            Sri Lanka's Premier Biker Community
+          </p>
+        </div>
+      </div>
+
+      {/* ── Right panel – form ── */}
+      <div className="w-full md:w-[45%] flex flex-col items-center justify-center bg-[#080808] px-8 py-12 min-h-screen">
+        <div className="w-full max-w-[340px]">
+
+          {/* mobile logo */}
+          <div className="md:hidden text-center mb-10">
+            <span className="font-bebas text-5xl">
+              <span className="text-[#F5F5F5]">RIDE</span>
+              <span className="text-[#FF6B00]">LANKA</span>
+            </span>
+          </div>
+
+          <h2 className="font-bebas text-[2.5rem] leading-none text-[#F5F5F5] tracking-wider">
+            WELCOME BACK
+          </h2>
+          <p className="text-[#555] text-sm mt-1 mb-8 font-light">
+            Sign in to continue your ride
+          </p>
+
+          {error && (
+            <div className="flex items-center gap-2 bg-red-900/20 border border-red-800/50 text-red-400 rounded-[4px] p-3 mb-5 text-sm">
+              <AlertCircle size={15} className="flex-shrink-0" />
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-[11px] text-[#888] mb-2 uppercase tracking-widest">Email</label>
+              <div className="relative">
+                <Mail size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#555]" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className={`${inputCls} pl-10`}
+                  placeholder="you@example.com"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-[11px] text-[#888] mb-2 uppercase tracking-widest">Password</label>
+              <div className="relative">
+                <Lock size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#555]" />
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className={`${inputCls} pl-10`}
+                  placeholder="••••••••"
+                />
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full font-bebas tracking-[2px] bg-[#FF6B00] text-black py-3.5 text-[15px] hover:bg-[#e55f00] active:scale-[0.97] disabled:opacity-50 transition-all"
+              >
+                {loading ? 'SIGNING IN…' : 'SIGN IN'}
+              </button>
+            </div>
+          </form>
+
+          <p className="text-center text-[#555] text-sm mt-8">
+            New to RideLanka?{' '}
+            <Link to="/register" className="text-[#FF6B00] hover:text-[#e55f00] font-medium transition-colors">
+              SIGN UP
+            </Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}

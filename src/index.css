@@ -1,0 +1,153 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+/* ─── Design tokens ────────────────────────────────── */
+:root {
+  --bg-primary:     #080808;
+  --bg-card:        #111111;
+  --bg-elevated:    #161616;
+  --bg-input:       #1c1c1c;
+  --orange:         #FF6B00;
+  --orange-dim:     rgba(255,107,0,0.15);
+  --orange-glow:    rgba(255,107,0,0.08);
+  --text-primary:   #F5F5F5;
+  --text-secondary: #888888;
+  --text-muted:     #555555;
+  --border:         rgba(255,255,255,0.06);
+  --border-hover:   rgba(255,107,0,0.4);
+  --radius-sm:      4px;
+  --radius-md:      8px;
+  --radius-lg:      12px;
+}
+
+/* ─── Base ─────────────────────────────────────────── */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { width: 100%; min-height: 100svh; }
+
+/* ─── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #111; }
+::-webkit-scrollbar-thumb { background: #FF6B00; border-radius: 2px; }
+
+/* ─── Selection ─────────────────────────────────────── */
+::selection { background: #FF6B00; color: #000; }
+
+/* ─── Leaflet overrides ─────────────────────────────── */
+.leaflet-container { background: #111; }
+.leaflet-popup-content-wrapper {
+  background: #111111 !important;
+  color: #F5F5F5 !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.7) !important;
+  padding: 0 !important;
+}
+.leaflet-popup-content { margin: 0 !important; }
+.leaflet-popup-tip { background: #111111 !important; }
+.leaflet-popup-close-button { color: #888 !important; top: 6px !important; right: 8px !important; }
+
+/* ─── Font helpers ──────────────────────────────────── */
+.font-bebas { font-family: 'Bebas Neue', cursive, sans-serif; letter-spacing: 0.03em; }
+.font-dm    { font-family: 'DM Sans', sans-serif; }
+
+/* ─── Animations ────────────────────────────────────── */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes cardReveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+@keyframes likeBounce {
+  0%   { transform: scale(1);    }
+  40%  { transform: scale(1.38); }
+  70%  { transform: scale(0.87); }
+  100% { transform: scale(1);    }
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);   }
+}
+
+.page-enter   { animation: pageEnter 0.3s ease forwards; }
+.card-reveal  { opacity: 0; animation: cardReveal 0.35s ease forwards; }
+.modal-enter  { animation: modalIn 0.2s ease forwards; }
+.like-bounce  { animation: likeBounce 0.35s ease; }
+
+/* ─── Skeleton ──────────────────────────────────────── */
+.skeleton {
+  background: var(--bg-elevated);
+  background-image: linear-gradient(
+    90deg,
+    var(--bg-elevated) 0px,
+    rgba(255,255,255,0.04) 80px,
+    var(--bg-elevated) 160px
+  );
+  background-size: 400px 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: var(--radius-md);
+}
+
+/* ─── Scrollbar hide ────────────────────────────────── */
+.scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+/* ─── Landing keyframes (keep) ──────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes marqueeTicker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes bounceDot {
+  0%, 100% { transform: translateX(-50%) translateY(0);   opacity: 0.5; }
+  50%       { transform: translateX(-50%) translateY(9px); opacity: 1; }
+}
+.hero-fadein {
+  opacity: 0;
+  animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── Landing responsive ────────────────────────────── */
+.l-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.l-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-left: 1px solid rgba(255,255,255,0.08);
+}
+.l-feature-cell {
+  border-right: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.l-split { display: flex; }
+
+@media (max-width: 900px) {
+  .l-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .l-stats-grid > div:nth-child(2) { border-right: none !important; }
+  .l-stats-grid > div:nth-child(3) {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-right: 1px solid rgba(255,255,255,0.08) !important;
+  }
+}
+@media (max-width: 700px) {
+  .l-features-grid { grid-template-columns: 1fr; }
+  .l-feature-cell   { border-right: none !important; }
+  .l-split          { flex-direction: column; }
+  .l-split-img      { min-height: 280px !important; }
+}
