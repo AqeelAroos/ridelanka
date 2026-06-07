@@ -70,7 +70,7 @@ export default function Routes() {
   );
 
   return (
-    <div className="pb-28 pt-14 px-5 max-w-2xl mx-auto page-enter">
+    <div className="pb-28 pt-14 px-4 sm:px-5 max-w-2xl mx-auto page-enter">
 
       {/* ── hero bar ── */}
       <div className="mt-6 mb-6">

@@ -151,7 +151,7 @@ export default function Community() {
   );
 
   return (
-    <div className="pb-28 pt-14 px-5 max-w-2xl mx-auto page-enter">
+    <div className="pb-28 pt-14 px-4 sm:px-5 max-w-2xl mx-auto page-enter">
 
       {/* ── header ── */}
       <div className="mt-6 mb-6">

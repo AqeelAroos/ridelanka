@@ -13,14 +13,14 @@ export default function BottomNav() {
   return (
     <nav
       className="fixed bottom-0 left-0 right-0 z-40 bg-[#080808]/95 backdrop-blur-xl border-t border-white/[0.05]"
-      style={{ height: 60 }}
+      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
     >
-      <div className="flex items-center justify-around px-2 h-full max-w-2xl mx-auto">
+      <div className="flex items-center justify-around px-2 h-[60px] max-w-2xl mx-auto">
         {navItems.map(({ to, icon: Icon, label }) => (
           <NavLink
             key={to}
             to={to}
-            className="relative flex flex-col items-center gap-0.5 px-3 transition-transform active:scale-[0.92]"
+            className="relative flex flex-col items-center justify-center gap-0.5 flex-1 h-full transition-transform active:scale-[0.92]"
           >
             {({ isActive }) => (
               <>

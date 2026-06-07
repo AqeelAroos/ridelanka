@@ -98,7 +98,7 @@ export default function Dashboard() {
     : '—';
 
   return (
-    <div className="pb-24 pt-14 px-5 max-w-2xl mx-auto page-enter">
+    <div className="pb-28 pt-14 px-4 sm:px-5 max-w-2xl mx-auto page-enter">
 
       {/* ── welcome ── */}
       <div className="mt-6 mb-6">
@@ -132,7 +132,7 @@ export default function Dashboard() {
           <button
             key={label}
             onClick={() => navigate(path)}
-            className="bg-[#111] border border-white/[0.06] rounded-[8px] p-4 flex flex-col items-center gap-2.5 hover:border-[#FF6B00]/40 hover:bg-[#161616] active:scale-[0.97] transition-all duration-200"
+            className="bg-[#111] border border-white/[0.06] rounded-[8px] p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-2.5 hover:border-[#FF6B00]/40 hover:bg-[#161616] active:scale-[0.97] transition-all duration-200"
             style={{ animationDelay: `${i * 0.05}s` }}
           >
             <div className="w-10 h-10 rounded-full bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center">

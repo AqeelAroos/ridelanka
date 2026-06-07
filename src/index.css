@@ -21,16 +21,27 @@
 }
 
 /* ─── Base ─────────────────────────────────────────── */
+html {
+  overflow-x: hidden;
+}
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: 'DM Sans', sans-serif;
   font-weight: 300;
   margin: 0;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 #root { width: 100%; min-height: 100svh; }
+
+/* ─── iOS: prevent zoom on input focus ──────────────── */
+/* iOS Safari zooms in when focused input font-size < 16px */
+@supports (-webkit-touch-callout: none) {
+  input, select, textarea { font-size: 16px !important; }
+}
 
 /* ─── Scrollbar ─────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; height: 4px; }

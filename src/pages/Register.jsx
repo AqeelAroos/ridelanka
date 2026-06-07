@@ -37,7 +37,7 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen min-h-dvh flex">
       {/* ── Left panel – hero image ── */}
       <div className="hidden md:flex md:w-[55%] relative overflow-hidden">
         <img
@@ -57,7 +57,7 @@ export default function Register() {
       </div>
 
       {/* ── Right panel – form ── */}
-      <div className="w-full md:w-[45%] flex flex-col items-center justify-center bg-[#080808] px-8 py-12 min-h-screen">
+      <div className="w-full md:w-[45%] flex flex-col items-center justify-center bg-[#080808] px-6 sm:px-8 py-12 min-h-screen min-h-dvh">
         <div className="w-full max-w-[340px]">
 
           {/* mobile logo */}

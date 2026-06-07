@@ -684,7 +684,7 @@ export default function HelmetHealth() {
   const [tab, setTab] = useState('SCAN');
 
   return (
-    <div className="pb-28 pt-14 px-5 max-w-2xl mx-auto page-enter">
+    <div className="pb-28 pt-14 px-4 sm:px-5 max-w-2xl mx-auto page-enter">
       <div className="mt-6 mb-6">
         <div className="flex items-center gap-3 mb-1">
           <ShieldCheck size={28} className="text-[#FF6B00]" />

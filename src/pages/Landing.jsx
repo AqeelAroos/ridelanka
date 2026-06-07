@@ -65,8 +65,10 @@ function LandingNav() {
         <Bike size={22} style={{ color:'#FF6B00' }} />
         <span style={{ fontSize:'22px', letterSpacing:'0.06em', color:'#fff' }}>RideLanka</span>
       </div>
-      <div style={{ display:'flex', alignItems:'center', gap:'28px' }}>
-        <NavLink to="/login">Log In</NavLink>
+      <div style={{ display:'flex', alignItems:'center', gap:'16px' }}>
+        <span className="hidden sm:inline-flex">
+          <NavLink to="/login">Log In</NavLink>
+        </span>
         <Link
           to="/register"
           style={{
