@@ -30,8 +30,9 @@ export default function Navbar() {
         </span>
 
         <div className="flex items-center gap-4">
-          <button className="text-[#555] hover:text-[#FF6B00] transition-colors">
+          <button className="relative text-[#555] hover:text-[#FF6B00] transition-colors">
             <Bell size={18} />
+            <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#FF6B00] rounded-full border border-[#080808]" />
           </button>
           <div className="w-[28px] h-[28px] rounded-full bg-[#FF6B00] flex items-center justify-center select-none">
             <span className="text-black text-[11px] font-bold leading-none">{initials}</span>
